@@ -1,0 +1,41 @@
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'application'
+mainClassName = "com.test.starter.Starter"
+
+ext.javaCompilationOptions = {
+    options.encoding = 'UTF-8'
+    options.debugOptions.debugLevel = "source,lines,vars"
+}
+
+idea {
+    module {
+        name = 'akka-sockets'
+    }
+}
+
+allprojects {
+    apply plugin: 'idea'
+    apply plugin: 'project-report'
+
+    version = '1.0'
+    repositories {
+        mavenCentral()
+    }
+
+    idea {
+        module {
+            inheritOutputDirs = true
+        }
+    }
+}
+
+dependencies {
+    compile 'org.slf4j:slf4j-api:1.7.5'
+    compile 'com.typesafe.akka:akka-actor_2.10:2.3.4'
+    compile 'com.typesafe.akka:akka-remote_2.10:2.3.4'
+    compile 'com.typesafe.akka:akka-slf4j_2.10:2.3.4'
+    compile 'com.typesafe:config:1.2.1'
+
+    runtime 'ch.qos.logback:logback-classic:1.0.6'
+}
